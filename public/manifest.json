@@ -1,0 +1,124 @@
+{
+  "name": "Nelly's Logistics",
+  "short_name": "Nelly's",
+  "description": "24/7 Same-Day & Next-Day Courier Service UK. Fast, reliable delivery across the UK and Europe.",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshots/desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "categories": ["business", "shopping", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Get a Quote",
+      "short_name": "Quote",
+      "description": "Get an instant quote for your delivery",
+      "url": "/contact?source=pwa-quote"
+    },
+    {
+      "name": "Track Delivery",
+      "short_name": "Track",
+      "description": "Track your delivery in real-time",
+      "url": "/tracking?source=pwa-track"
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "scope": "/",
+  "id": "/?source=pwa",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred",
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+nellys",
+      "url": "/tracking?tracking=%s"
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "/upload",
+      "accept": {
+        "application/pdf": [
+          ".pdf"
+        ],
+        "image/*": [
+          ".jpg",
+          ".jpeg",
+          ".png"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# https://www.robotstxt.org/
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.nellyslogistics.com/sitemap.xml
+
+# Crawl-delay: 10
+
+# Disallow admin and API routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /_vercel/
+Disallow: /*?*
+
+# Allow all other pages
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+
+# Block specific pages if needed
+# Disallow: /private/
+# Disallow: /temporary/
