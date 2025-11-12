@@ -7,8 +7,8 @@ export const runtime = 'nodejs';
 
 // Helper function to create Supabase client
 function getSupabaseClient() {
-  const supabaseUrl = 'https://hbkarxrwxggdfivzgpzm.supabase.co';
-  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhia2FyeHJ3eGdnZGZpdnpncHptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTUxMjcsImV4cCI6MjA3NzQ5MTEyN30.TK35Y_cGSbOKG5GRRu6llYbTM1B7us3EpuC6C03RXuc';
+  const supabaseUrl: string = 'https://hbkarxrwxggdfivzgpzm.supabase.co';
+  const supabaseAnonKey: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhia2FyeHJ3eGdnZGZpdnpncHptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTUxMjcsImV4cCI6MjA3NzQ5MTEyN30.TK35Y_cGSbOKG5GRRu6llYbTM1B7us3EpuC6C03RXuc';
 
   try {
     return createClient(supabaseUrl, supabaseAnonKey);
@@ -50,10 +50,15 @@ export async function POST(request: NextRequest) {
     const supabase = getSupabaseClient();
     
     if (!supabase) {
-      // Fallback: return a placeholder image URL for development
-      console.warn('Supabase not configured - using placeholder image');
-      const placeholderUrl = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80';
-      return NextResponse.json({ url: placeholderUrl }, { status: 200 });
+      // Return error instead of placeholder to prevent all reviews having same image
+      console.error('Supabase not configured - upload failed');
+      return NextResponse.json(
+        { 
+          error: 'Upload service not configured',
+          details: 'Supabase client initialization failed'
+        },
+        { status: 500 }
+      );
     }
 
     try {
@@ -76,9 +81,15 @@ export async function POST(request: NextRequest) {
 
       if (error) {
         console.error('Supabase upload error:', error);
-        // Fallback to placeholder on error
-        const placeholderUrl = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80';
-        return NextResponse.json({ url: placeholderUrl }, { status: 200 });
+        // Return error instead of placeholder to prevent duplicate images
+        return NextResponse.json(
+          { 
+            error: 'Failed to upload image',
+            details: error.message || 'Storage upload failed',
+            code: error.statusCode || 'UPLOAD_ERROR'
+          },
+          { status: 500 }
+        );
       }
 
       // Get public URL
@@ -97,9 +108,14 @@ export async function POST(request: NextRequest) {
 
     } catch (uploadError: any) {
       console.error('File upload error:', uploadError);
-      // Fallback to placeholder on error
-      const placeholderUrl = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80';
-      return NextResponse.json({ url: placeholderUrl }, { status: 200 });
+      // Return error instead of placeholder
+      return NextResponse.json(
+        { 
+          error: 'Failed to process image upload',
+          details: uploadError?.message || 'Unknown upload error'
+        },
+        { status: 500 }
+      );
     }
 
   } catch (error: any) {

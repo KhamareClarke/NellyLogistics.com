@@ -15,7 +15,23 @@ Follow these steps to get your website live:
 
 The database is now ready! Reviews will be stored here.
 
-### 2. Environment Variables (2 minutes)
+### 2. Storage Setup (3 minutes) - **REQUIRED for Profile Pictures**
+
+1. In your Supabase dashboard, click on **"SQL Editor"** in the left sidebar
+2. Click **"New query"** button
+3. Open the file `supabase-storage-setup.sql` from this project
+4. Copy the **entire contents** of the file
+5. Paste it into the SQL Editor
+6. Click **"Run"** to create the storage bucket
+
+**Verify the bucket was created:**
+- Go to **Storage** in the left sidebar
+- You should see a bucket named **"uploads"**
+- Make sure it's marked as **Public**
+
+📖 **Detailed instructions:** See `STORAGE-SETUP-GUIDE.md` for troubleshooting
+
+### 3. Environment Variables (2 minutes)
 
 The `.env` file is already configured with your Supabase credentials. Update these values:
 
@@ -29,7 +45,7 @@ To get your Google Review link:
 2. Click "Get more reviews"
 3. Copy the short URL (looks like: https://g.page/r/XXX)
 
-### 3. Update Contact Information (10 minutes)
+### 4. Update Contact Information (10 minutes)
 
 Search and replace these placeholders throughout the codebase:
 
@@ -48,7 +64,7 @@ Search and replace these placeholders throughout the codebase:
 - Find: `Company No: XXXXXXXX`
 - Replace with your actual company registration number
 
-### 4. Customize Branding (Optional, 10 minutes)
+### 5. Customize Branding (Optional, 10 minutes)
 
 **Add Your Logo:**
 1. Replace the "N" placeholder in `components/Header.tsx`

@@ -114,16 +114,29 @@ export default function ReviewsPage() {
         });
         
         if (!uploadResponse.ok) {
-          throw new Error('Failed to upload profile picture');
+          let errorMessage = 'Failed to upload profile picture';
+          try {
+            const errorData = await uploadResponse.json();
+            errorMessage = errorData.error || errorMessage;
+            if (errorData.details) {
+              errorMessage += `: ${errorData.details}`;
+            }
+          } catch {
+            // If response is not JSON, use default message
+          }
+          throw new Error(errorMessage);
         }
         
         const uploadData = await uploadResponse.json();
+        if (!uploadData.url) {
+          throw new Error('Upload succeeded but no image URL was returned');
+        }
         profilePictureUrl = uploadData.url;
-      } catch (uploadError) {
+      } catch (uploadError: any) {
         console.error('Profile picture upload error:', uploadError);
         toast({
-          title: 'Error',
-          description: 'Failed to upload profile picture. Please try again.',
+          title: 'Upload Error',
+          description: uploadError?.message || 'Failed to upload profile picture. Please try again.',
           variant: 'destructive',
         });
         setIsSubmitting(false);
@@ -351,13 +364,13 @@ export default function ReviewsPage() {
                         <div className="flex items-start gap-4 mb-4">
                           <div className="flex-shrink-0">
                             <img
-                              src={review.profile_picture_url}
+                              src={`${review.profile_picture_url}${review.profile_picture_url.includes('?') ? '&' : '?'}t=${review.id}`}
                               alt={`${review.name}'s profile`}
                               className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white shadow-lg ring-2 ring-blue-100 group-hover:ring-blue-200 transition-all duration-300"
                               onError={(e) => {
                                 // Fallback to placeholder if image fails to load
                                 const target = e.target as HTMLImageElement;
-                                target.src = 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80';
+                                target.src = `https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80&t=${review.id}`;
                               }}
                             />
                           </div>

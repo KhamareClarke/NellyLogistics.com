@@ -615,7 +615,7 @@ export default function HomePage() {
                                 {/* Profile Picture */}
                                 <div className="w-16 h-16 rounded-full flex-shrink-0 shadow-lg ring-4 ring-white/20">
                                   <img
-                                    src={review.profile_picture_url}
+                                    src={`${review.profile_picture_url}${review.profile_picture_url.includes('?') ? '&' : '?'}t=${review.id}`}
                                     alt={`${review.name}'s profile`}
                                     className="w-full h-full rounded-full object-cover"
                                     onError={(e) => {
