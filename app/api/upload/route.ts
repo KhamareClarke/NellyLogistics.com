@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
           { 
             error: 'Failed to upload image',
             details: error.message || 'Storage upload failed',
-            code: error.statusCode || 'UPLOAD_ERROR'
+            code: 'UPLOAD_ERROR'
           },
           { status: 500 }
         );
