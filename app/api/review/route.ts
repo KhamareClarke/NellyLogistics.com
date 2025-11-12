@@ -7,8 +7,8 @@ export const runtime = 'nodejs';
 
 // Helper function to create Supabase client
 function getSupabaseClient() {
-  const supabaseUrl = 'https://hbkarxrwxggdfivzgpzm.supabase.co';
-  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhia2FyeHJ3eGdnZGZpdnpncHptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTUxMjcsImV4cCI6MjA3NzQ5MTEyN30.TK35Y_cGSbOKG5GRRu6llYbTM1B7us3EpuC6C03RXuc';
+  const supabaseUrl: string = 'https://hbkarxrwxggdfivzgpzm.supabase.co';
+  const supabaseAnonKey: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhia2FyeHJ3eGdnZGZpdnpncHptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTUxMjcsImV4cCI6MjA3NzQ5MTEyN30.TK35Y_cGSbOKG5GRRu6llYbTM1B7us3EpuC6C03RXuc';
 
   try {
     return createClient(supabaseUrl, supabaseAnonKey);
@@ -167,8 +167,8 @@ export async function POST(request: NextRequest) {
       published: true, // Publish immediately - no verification needed
     };
 
-    const supabaseUrl = 'https://hbkarxrwxggdfivzgpzm.supabase.co';
-    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhia2FyeHJ3eGdnZGZpdnpncHptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTUxMjcsImV4cCI6MjA3NzQ5MTEyN30.TK35Y_cGSbOKG5GRRu6llYbTM1B7us3EpuC6C03RXuc';
+    const supabaseUrl: string = 'https://hbkarxrwxggdfivzgpzm.supabase.co';
+    const supabaseAnonKey: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhia2FyeHJ3eGdnZGZpdnpncHptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTUxMjcsImV4cCI6MjA3NzQ5MTEyN30.TK35Y_cGSbOKG5GRRu6llYbTM1B7us3EpuC6C03RXuc';
     const supabase = getSupabaseClient();
 
     console.log('Review data to save:', reviewData);
