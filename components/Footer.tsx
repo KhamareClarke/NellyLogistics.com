@@ -72,7 +72,7 @@ export function Footer() {
                 </div>
                 <div>
                   <p className="font-semibold text-white mb-1">Location</p>
-                  <p className="text-slate-300">Unit 5 Warwick St, Coventry CV5 6ET</p>
+                  <p className="text-slate-300">Unit 3 Warwick St, Coventry CV5 6ET</p>
                 </div>
               </div>
               
@@ -86,8 +86,8 @@ export function Footer() {
                     02475 269000
                   </a>
                   <br />
-                  <a href="tel:+447727363722" className="text-slate-300 hover:text-cyan-400 transition-colors">
-                    +44 7727 363722
+                  <a href="tel:+447414853738" className="text-slate-300 hover:text-cyan-400 transition-colors">
+                    +447414853738
                   </a>
                 </div>
               </div>
@@ -110,7 +110,7 @@ export function Footer() {
         <div className="border-t border-slate-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-center md:text-left">
             <p className="text-slate-400">
-              &copy; {currentYear} Nelly&apos;s Logistics. All rights reserved.
+              &copy; {currentYear} Neellys Courier Services Ltd. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
               <Link href="/legal/privacy" className="text-slate-400 hover:text-cyan-400 transition-colors">
